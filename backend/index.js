@@ -10,6 +10,10 @@ const bcrypt = require("bcryptjs"); // ✅ Import bcrypt
 const User = require("./Models/user.js"); // ✅ Import User model
 
 const app = express();
+connectDB().then(() => {
+  console.log(" Connected to MongoDB");
+  createSuperadmin(); // ✅ Call the function AFTER connecting to DB
+});
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Origin", "*"); // Allow all origins for images
 //   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH");
@@ -24,19 +28,11 @@ const app = express();
 //   credentials: true, // Allow cookies and authentication headers
 // };
 app.use(express.json());
-
 app.use(cors());
-
 
 // Middleware
 app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
-
 // Connect to Database
-connectDB().then(() => {
-  console.log(" Connected to MongoDB");
-  createSuperadmin(); // ✅ Call the function AFTER connecting to DB
-});
-
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
