@@ -4,7 +4,7 @@ const connectDB = require("./Config/dbconnection.js");
 const authRoutes = require("./Routes/authroutes.js");
 const adminRoutes = require("./Routes/adminroutes");
 const userRoutes = require("./Routes/userroutes.js")
-const path = require("path");
+// const path = require("path");
 const cors = require("cors");
 const bcrypt = require("bcryptjs"); // ✅ Import bcrypt
 const User = require("./Models/user.js"); // ✅ Import User model
@@ -34,8 +34,8 @@ app.use(cors());
 app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
 // Connect to Database
 // Routes
-app.get("/test",(req,res)=>{
-  return res.json({message:"Backend is running"})
+app.get("/test", (req, res) => {
+  return res.json({ message: "Backend is running" })
 })
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
