@@ -34,6 +34,9 @@ app.use(cors());
 app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
 // Connect to Database
 // Routes
+app.get("/test",(req,res)=>{
+  return res.json({message:"Backend is running"})
+})
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userRoutes)
